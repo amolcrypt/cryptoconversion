@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Converter</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Crypto Converter</h2>
+        
+        <div class="card">
+            <div class="card-header">From</div>
+            <div class="card-body">
+                <select id="fromCurrency" class="crypto-select"></select>
+                <input type="number" id="fromAmount" class="amount-input" placeholder="Enter amount">
+            </div>
+        </div>
+
+        <button class="swap-btn" id="swapBtn">
+            <div class="arrow up"></div>
+            <div class="arrow down"></div>
+        </button>
+
+        <div class="card">
+            <div class="card-header">To</div>
+            <div class="card-body">
+                <select id="toCurrency" class="crypto-select"></select>
+                <input type="text" id="toAmount" class="amount-input" placeholder="Converted amount" readonly>
+            </div>
+        </div>
+
+        <p class="conversion-rate">Rate: <span id="conversionRate">-</span></p>
+
+        <button class="proceed-btn" id="proceedBtn">Proceed</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
