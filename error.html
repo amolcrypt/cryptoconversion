@@ -3,21 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Warning - High-Risk Funds</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Warning - High-Level Risk</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <div class="error-box">
-            <h2>⚠️ Warning: High-Risk Funds</h2>
-            <p>Your funds are at high-level risk. Get your funds insured before you proceed.</p>
-            <div class="buttons">
-                <button id="goBack">Go Back</button>
-                <button id="getInsured">Get Insured</button>
-            </div>
-            <p id="insuranceMessage" class="hidden">Contact agent to get insured now</p>
+    <div class="error-container">
+        <h2>⚠ Warning!</h2>
+        <p class="error-message">Your funds are at high-level risk. Get your funds insured before you proceed.</p>
+
+        <div class="error-buttons">
+            <button onclick="goBack()">Go Back</button>
+            <button id="get-insured">Get Insured</button>
         </div>
+
+        <p id="insurance-message" class="hidden">Contact an agent to get insured now.</p>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        document.getElementById("get-insured").addEventListener("click", function() {
+            document.getElementById("insurance-message").classList.remove("hidden");
+        });
+    </script>
 </body>
 </html>
