@@ -1,3 +1,4 @@
+/* General Page Styling */
 body {
     font-family: Arial, sans-serif;
     text-align: center;
@@ -7,16 +8,19 @@ body {
     padding: 0;
 }
 
+/* Main Container */
 .container {
     max-width: 450px;
     margin: 50px auto;
     padding: 20px;
 }
 
+/* Header */
 h2 {
     color: #ffcc00;
 }
 
+/* Card Styles */
 .card {
     background: #1e1e1e;
     border-radius: 12px;
@@ -29,6 +33,7 @@ h2 {
     margin: 10px auto;
 }
 
+/* Card Header */
 .card-header {
     font-size: 14px;
     font-weight: bold;
@@ -36,7 +41,15 @@ h2 {
     margin-bottom: 5px;
 }
 
-.crypto-select, .amount-input {
+/* Card Content */
+.card-body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* Dropdown Styling */
+select {
     width: 100%;
     padding: 10px;
     font-size: 16px;
@@ -47,6 +60,18 @@ h2 {
     margin-bottom: 10px;
 }
 
+/* Amount Input */
+input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+    background: #2a2a2a;
+    color: white;
+}
+
+/* Swap Button */
 .swap-btn {
     background: transparent;
     border: none;
@@ -58,6 +83,7 @@ h2 {
     transition: transform 0.2s ease-in-out;
 }
 
+/* Arrow Styles */
 .arrow {
     display: block;
     width: 20px;
@@ -66,6 +92,7 @@ h2 {
     position: relative;
 }
 
+/* Up Arrow */
 .arrow.up::before {
     content: "";
     position: absolute;
@@ -78,6 +105,7 @@ h2 {
     transform: translateX(-50%);
 }
 
+/* Down Arrow */
 .arrow.down::before {
     content: "";
     position: absolute;
@@ -90,9 +118,10 @@ h2 {
     transform: translateX(-50%);
 }
 
+/* Coinbase Blue Proceed Button */
 .proceed-btn {
     width: 95%;
-    background: #0052FF;
+    background: #0052FF; /* Coinbase Blue */
     color: white;
     border: none;
     padding: 12px;
@@ -107,8 +136,64 @@ h2 {
     background: #0040CC;
 }
 
+/* Conversion Rate Text */
 .conversion-rate {
     font-size: 14px;
     margin-top: 10px;
     color: #ccc;
+}
+/* Error Page Styling */
+.error-container {
+    max-width: 400px;
+    background: #1e1e1e;
+    padding: 20px;
+    margin: 50px auto;
+    border-radius: 12px;
+    box-shadow: 4px 4px 10px rgba(255, 0, 0, 0.3);
+    text-align: center;
+}
+
+h2 {
+    color: #ff4444;
+}
+
+.error-message {
+    font-size: 16px;
+    color: #ccc;
+    margin-bottom: 20px;
+}
+
+.error-buttons button {
+    width: 120px;
+    padding: 10px;
+    margin: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.error-buttons button:first-child {
+    background: #444;
+    color: white;
+}
+
+.error-buttons button:last-child {
+    background: #ff4444;
+    color: white;
+}
+
+.error-buttons button:hover {
+    opacity: 0.8;
+}
+
+/* Hidden Insurance Message */
+.hidden {
+    display: none;
+}
+
+#insurance-message {
+    color: #ffcc00;
+    font-weight: bold;
+    margin-top: 15px;
 }

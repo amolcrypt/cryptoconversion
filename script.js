@@ -1,67 +1,33 @@
-const cryptoList = [
-    { name: "Bitcoin", symbol: "BTC" },
-    { name: "Ethereum", symbol: "ETH" },
-    { name: "Litecoin", symbol: "LTC" },
-    { name: "USD Coin", symbol: "USDC" },
-    { name: "Tether", symbol: "USDT" },
-    { name: "LUSD Stablecoin", symbol: "LUSD" },
-    { name: "Binance Coin", symbol: "BNB" },
-    { name: "Cardano", symbol: "ADA" },
-    { name: "Solana", symbol: "SOL" },
-    { name: "Dogecoin", symbol: "DOGE" },
-    { name: "Polkadot", symbol: "DOT" },
-    { name: "Avalanche", symbol: "AVAX" },
-    { name: "Shiba Inu", symbol: "SHIB" },
-    { name: "Polygon", symbol: "MATIC" },
-    { name: "TRON", symbol: "TRX" },
-    { name: "Cosmos", symbol: "ATOM" },
-    { name: "Stellar", symbol: "XLM" },
-    { name: "Bitcoin Cash", symbol: "BCH" },
-    { name: "Filecoin", symbol: "FIL" },
-    { name: "VeChain", symbol: "VET" },
-    { name: "Monero", symbol: "XMR" },
-    { name: "Theta Network", symbol: "THETA" },
-    { name: "Tezos", symbol: "XTZ" },
-    { name: "EOS", symbol: "EOS" },
-    { name: "Aave", symbol: "AAVE" }
-];
-
-// Mock conversion rates
-const mockRates = {
-    "BTC": { "ETH": 15.5, "USDT": 65000, "LUSD": 65000 },
-    "ETH": { "BTC": 0.064, "USDT": 4200, "LUSD": 4200 },
-    "USDT": { "BTC": 0.000015, "ETH": 0.00024, "LUSD": 1 },
-    "LUSD": { "BTC": 0.000015, "ETH": 0.00024, "USDT": 1 }
+// Mock conversion rates (Replace with real API in the future)
+const conversionRates = {
+    BTC: { ETH: 15.2, LUSD: 40000, USDT: 39000 },
+    ETH: { BTC: 0.065, LUSD: 2500, USDT: 2400 },
+    LUSD: { BTC: 0.000025, ETH: 0.0004, USDT: 1 },
+    USDT: { BTC: 0.000026, ETH: 0.00042, LUSD: 1 },
 };
 
-const fromSelect = document.getElementById("fromCurrency");
-const toSelect = document.getElementById("toCurrency");
-const fromAmount = document.getElementById("fromAmount");
-const toAmount = document.getElementById("toAmount");
-const conversionRateText = document.getElementById("conversionRate");
+// Perform conversion
+function convert() {
+    let from = document.getElementById("from-crypto").value;
+    let to = document.getElementById("to-crypto").value;
+    let amount = parseFloat(document.getElementById("from-amount").value) || 0;
 
-cryptoList.forEach(crypto => {
-    const option1 = new Option(`${crypto.name} (${crypto.symbol})`, crypto.symbol);
-    const option2 = new Option(`${crypto.name} (${crypto.symbol})`, crypto.symbol);
-    fromSelect.add(option1);
-    toSelect.add(option2);
-});
-
-fromSelect.addEventListener("change", updateConversion);
-toSelect.addEventListener("change", updateConversion);
-fromAmount.addEventListener("input", updateConversion);
-
-function updateConversion() {
-    const from = fromSelect.value;
-    const to = toSelect.value;
-    const amount = parseFloat(fromAmount.value);
-
-    if (mockRates[from] && mockRates[from][to]) {
-        const rate = mockRates[from][to];
-        conversionRateText.innerText = rate;
-        toAmount.value = (amount * rate).toFixed(6);
-    } else {
-        conversionRateText.innerText = "-";
-        toAmount.value = "";
+    if (from !== to && conversionRates[from] && conversionRates[from][to]) {
+        let rate = conversionRates[from][to];
+        document.getElementById("to-amount").value = (amount * rate).toFixed(6);
+        document.getElementById("conversion-rate-text").innerText = `Rate: 1 ${from} = ${rate} ${to}`;
     }
 }
+
+// Swap currencies
+function swapCoins() {
+    let fromSelect = document.getElementById("from-crypto");
+    let toSelect = document.getElementById("to-crypto");
+    [fromSelect.value, toSelect.value] = [toSelect.value, fromSelect.value];
+    convert();
+}
+
+// Listen for changes
+document.getElementById("from-crypto").addEventListener("change", convert);
+document.getElementById("to-crypto").addEventListener("change", convert);
+document.getElementById("from-amount").addEventListener("input", convert);
